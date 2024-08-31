@@ -37,10 +37,11 @@ Supabase is an open source Firebase alternative, creating projects for a Postgre
 1. go to https://supabase.com/dashboard to login or create a new account
 2. create a new Project
 3. go to the Project Settings ⇒ Configurations ⇒ Database
-4. from the Connection String section, go to PSQL tab to get the value for `DATABASE_URL`. Then go to the Connection Parameters section to copy each item to the mysql section of `\config\database.js` file
+4. go to the Connection Parameters section to copy each item to the postgres section of `\config\database.js` file
    ```
     const connections = {
-    mysql: {
+      ...
+    postgres: {
       connection: {
         connectionString: env('DATABASE_URL'),
         host: env('DATABASE_HOST', 'localhost'),
@@ -51,10 +52,20 @@ Supabase is an open source Firebase alternative, creating projects for a Postgre
         ssl: env.bool('DATABASE_SSL', false) && {
 
    ```
-5. save
+5. OR a better way is to put all env vars in the `.env` file like so:
+   ```
+    #supabase postgres
+    DATABASE_HOST=value-from-Connection-Params-in-Supabase
+    DATABASE_PORT=value-from-Connection-Params-in-Supabase
+    DATABASE_NAME=postgres
+    DATABASE_USERNAME=value-from-Connection-Params-in-Supabase
+    DATABASE_PASSWORD=value-from-Connection-Params-in-Supabase
+
+   ```
+6. save
 
 # 📦  Push to Github 
-1. got to github.com, login then create a new repository
+1. go to github.com, login then create a new repository
 2. after creating a new repo, go back to the codebase and run
    ```
    git remote add origin git@github.com:your-user-name/your-git-repo-name.git
@@ -62,8 +73,17 @@ Supabase is an open source Firebase alternative, creating projects for a Postgre
    git push -u origin main
    ```
 
+# 🚀 Getting started with Render
+Render is a cloud hosting provider that can run every shape and size of application: static websites, dynamic web apps, scheduled cron jobs—you name it. It natively supports many popular programming languages, like Node.js, Python, and Ruby.
 
-
+### ✏️ login/signup for a supabase account
+1. go to https://render.com/ to login or create a new account
+2. at the Dashboard, create a new Web Service
+3. link your Github repo
+4. add `Environment Variables` using the values you have from the the `.env` file
+5. click Deploy Web Service and wait to complete
+6. after successful deploy, you should be able to go to your Strapi site https://your-render-service-NAME.onrender.com/admin
+  
 
 
 <!-- ## ⚙️ Deployment
